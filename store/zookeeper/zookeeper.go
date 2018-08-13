@@ -49,7 +49,8 @@ func New(endpoints []string, options *store.Config) (store.Store, error) {
 	}
 
 	// Connect to Zookeeper
-	conn, _, err := zk.Connect(endpoints, s.timeout)
+	//zk.WithLogInfo(false) 连接信息不输出
+	conn, _, err := zk.Connect(endpoints, s.timeout,zk.WithLogInfo(false))
 	if err != nil {
 		return nil, err
 	}
